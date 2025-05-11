@@ -5,163 +5,200 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link as RouterLink } from 'react-router-dom';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
 
 const Footer = () => {
   const year = new Date().getFullYear();
   
   return (
-    <Box sx={{ bgcolor: '#f5f5f5', pt: 6, pb: 6, mt: 'auto' }}>
+    <Box sx={{      bgcolor: '#0a0a14', 
+      pt: 8, 
+      pb: 6, 
+      mt: 'auto',
+      borderTop: '1px solid rgba(255, 184, 0, 0.1)'
+    }}>
       <Container maxWidth="lg">
-        <Grid container spacing={4}>
+        <Grid container spacing={6}>
           <Grid item xs={12} md={4}>
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                fontWeight: 700, 
-                mb: 2,
-                fontSize: '1.5rem',
-                letterSpacing: '-0.5px'
-              }}
-            >
-              RENTAL
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+              <Box 
+                sx={{ 
+                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                  bgcolor: 'primary.main',
+                  width: '40px',
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  mr: 2
+                }}
+              >
+                <Box component="span" sx={{ color: 'black', fontWeight: 'bold' }}>S</Box>
+              </Box>
+              <Typography 
+                className="orbitron"
+                variant="h6"                sx={{ 
+                  fontWeight: 700, 
+                  textShadow: '0 0 10px rgba(255, 184, 0, 0.7)'
+                }}
+              >
+                SIXTSENSE
+              </Typography>
+            </Box>
+            <Typography variant="body2" paragraph sx={{ color: 'text.secondary', maxWidth: 350 }}>
+              The future of car rentals powered by AI and cutting-edge technology.
             </Typography>
-            <Typography variant="body2" color="text.secondary" paragraph sx={{ maxWidth: 300 }}>
-              Find your perfect car with our AI-powered rental service. We offer a wide range of vehicles to meet all your driving needs.
-            </Typography>
-            <Box sx={{ mt: 2 }}>
-              <IconButton color="inherit" aria-label="Facebook">
+            <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
+              <IconButton sx={{ color: 'rgba(255, 255, 255, 0.7)', '&:hover': { color: 'primary.main' } }}>
                 <FacebookIcon />
               </IconButton>
-              <IconButton color="inherit" aria-label="Twitter">
+              <IconButton sx={{ color: 'rgba(255, 255, 255, 0.7)', '&:hover': { color: 'primary.main' } }}>
                 <TwitterIcon />
               </IconButton>
-              <IconButton color="inherit" aria-label="Instagram">
+              <IconButton sx={{ color: 'rgba(255, 255, 255, 0.7)', '&:hover': { color: 'primary.main' } }}>
                 <InstagramIcon />
               </IconButton>
-              <IconButton color="inherit" aria-label="LinkedIn">
+              <IconButton sx={{ color: 'rgba(255, 255, 255, 0.7)', '&:hover': { color: 'primary.main' } }}>
                 <LinkedInIcon />
               </IconButton>
             </Box>
           </Grid>
           
-          <Grid item xs={6} md={2}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
-              Quick Links
-            </Typography>
-            <Box component="nav" sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Link 
-                component={RouterLink} 
-                to="/"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                Home
-              </Link>
-              <Link 
-                component={RouterLink} 
-                to="/vehicles"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                Vehicles
-              </Link>
-              <Link 
-                component={RouterLink} 
-                to="/how-it-works"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                How It Works
-              </Link>
-              <Link 
-                component={RouterLink} 
-                to="/about"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                About Us
-              </Link>
-            </Box>
-          </Grid>
-          
-          <Grid item xs={6} md={2}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
-              Vehicle Types
-            </Typography>
-            <Box component="nav" sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Link 
-                component={RouterLink} 
-                to="/vehicles?type=sedan"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                Sedans
-              </Link>
-              <Link 
-                component={RouterLink} 
-                to="/vehicles?type=suv"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                SUVs
-              </Link>
-              <Link 
-                component={RouterLink} 
-                to="/vehicles?type=electric"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                Electric
-              </Link>
-              <Link 
-                component={RouterLink} 
-                to="/vehicles?type=luxury"
-                color="inherit"
-                underline="none"
-                sx={{ mb: 1, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
-              >
-                Luxury
-              </Link>
-            </Box>
-          </Grid>
-          
-          <Grid item xs={12} md={4}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
-              Contact Us
-            </Typography>
-            <Typography variant="body2" color="text.secondary" paragraph>
-              123 Rental Street, Carville, CV 12345
-            </Typography>
-            <Typography variant="body2" color="text.secondary" paragraph>
-              Email: info@rental.com
-            </Typography>
-            <Typography variant="body2" color="text.secondary" paragraph>
-              Phone: (123) 456-7890
-            </Typography>
+          <Grid item xs={12} md={8}>
+            <Grid container spacing={3}>
+              <Grid item xs={6} sm={4}>
+                <Typography variant="h6" className="orbitron" sx={{ color: 'white', mb: 3, fontWeight: 'bold' }}>
+                  COMPANY
+                </Typography>
+                <Box component="nav" sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <Link 
+                    component={RouterLink} 
+                    to="/about"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    component={RouterLink} 
+                    to="/careers"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    Careers
+                  </Link>
+                  <Link 
+                    component={RouterLink} 
+                    to="/blog"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    Blog
+                  </Link>
+                  <Link 
+                    component={RouterLink} 
+                    to="/press"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    Press
+                  </Link>
+                </Box>
+              </Grid>
+              
+              <Grid item xs={6} sm={4}>
+                <Typography variant="h6" className="orbitron" sx={{ color: 'white', mb: 3, fontWeight: 'bold' }}>
+                  SUPPORT
+                </Typography>
+                <Box component="nav" sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <Link 
+                    component={RouterLink} 
+                    to="/help"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    Help Center
+                  </Link>
+                  <Link 
+                    component={RouterLink} 
+                    to="/safety"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    Safety
+                  </Link>
+                  <Link 
+                    component={RouterLink} 
+                    to="/community"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    Community
+                  </Link>
+                  <Link 
+                    component={RouterLink} 
+                    to="/accessibility"
+                    color="inherit"
+                    underline="none"
+                    sx={{ mb: 2, color: 'text.secondary', '&:hover': { color: 'primary.main' } }}
+                  >
+                    Accessibility
+                  </Link>
+                </Box>
+              </Grid>
+              
+              <Grid item xs={12} sm={4}>
+                <Typography variant="h6" className="orbitron" sx={{ color: 'white', mb: 3, fontWeight: 'bold' }}>
+                  CONTACT
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <LocationOnIcon sx={{ color: 'primary.main', mr: 1 }} fontSize="small" />
+                    <Typography variant="body2" color="text.secondary">
+                      123 Future Street, Neo City
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <PhoneIcon sx={{ color: 'primary.main', mr: 1 }} fontSize="small" />
+                    <Typography variant="body2" color="text.secondary">
+                      +1 (555) 123-4567
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <EmailIcon sx={{ color: 'primary.main', mr: 1 }} fontSize="small" />
+                    <Typography variant="body2" color="text.secondary">
+                      info@sixtsense.com
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
         
-        <Divider sx={{ my: 3 }} />
+        <Divider sx={{ my: 5, borderColor: 'rgba(255, 255, 255, 0.1)' }} />
         
-        <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'space-between' }, flexWrap: 'wrap' }}>
-          <Typography variant="body2" color="text.secondary" sx={{ textAlign: { xs: 'center', md: 'left' } }}>
-            © {year} RENTAL. All rights reserved.
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 2, md: 0 } }}>
+            © {year} SixtSense. All rights reserved.
           </Typography>
-          <Box sx={{ display: 'flex', mt: { xs: 2, md: 0 }, justifyContent: 'center', width: { xs: '100%', md: 'auto' } }}>
-            <Link href="#" color="inherit" underline="none" sx={{ mx: 1, color: 'text.secondary', fontSize: '0.875rem' }}>
+          <Box sx={{ display: 'flex', gap: 3 }}>
+            <Link href="#" color="inherit" underline="none" sx={{ color: 'text.secondary', fontSize: '0.875rem', '&:hover': { color: 'primary.main' } }}>
               Privacy Policy
             </Link>
-            <Link href="#" color="inherit" underline="none" sx={{ mx: 1, color: 'text.secondary', fontSize: '0.875rem' }}>
+            <Link href="#" color="inherit" underline="none" sx={{ color: 'text.secondary', fontSize: '0.875rem', '&:hover': { color: 'primary.main' } }}>
               Terms of Service
             </Link>
-            <Link href="#" color="inherit" underline="none" sx={{ mx: 1, color: 'text.secondary', fontSize: '0.875rem' }}>
+            <Link href="#" color="inherit" underline="none" sx={{ color: 'text.secondary', fontSize: '0.875rem', '&:hover': { color: 'primary.main' } }}>
               Cookie Policy
             </Link>
           </Box>

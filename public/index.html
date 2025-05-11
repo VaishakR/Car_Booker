@@ -24,7 +24,38 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>RENTAL - Futuristic Car Rental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      @keyframes pulse {
+        0% {
+          opacity: 0.6;
+          transform: scale(0.85);
+        }
+        50% {
+          opacity: 0.3;
+          transform: scale(1.15);
+        }
+        100% {
+          opacity: 0.6;
+          transform: scale(0.85);
+        }
+      }
+      
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 5px rgba(0, 238, 255, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(0, 238, 255, 0.8);
+        }
+        100% {
+          box-shadow: 0 0 5px rgba(0, 238, 255, 0.5);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

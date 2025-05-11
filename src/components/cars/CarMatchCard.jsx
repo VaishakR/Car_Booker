@@ -90,7 +90,7 @@ const CarMatchCard = ({ car, rank }) => {
                 color="primary.main"
                 sx={{ fontWeight: 700 }}
               >
-                ${formattedPrice}
+                AED {formattedPrice}
               </Typography>
               
               <Chip 

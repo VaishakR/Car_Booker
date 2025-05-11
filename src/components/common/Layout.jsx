@@ -1,14 +1,17 @@
 import React from 'react';
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 
 const Layout = ({ children }) => {
   return (
     <Box 
       component="main" 
       sx={{ 
-        minHeight: 'calc(100vh - 64px - 300px)', // Viewport height minus header and footer
+        minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        backgroundColor: '#0a0a0a',
+        color: '#ffffff',
+        overflow: 'hidden'
       }}
     >
       {children}

@@ -103,7 +103,7 @@ const BestMatchCard = ({ car, compact = false }) => {
               color="primary"
               sx={{ fontWeight: 700, mb: 2 }}
             >
-              ${formattedPrice}
+              AED {formattedPrice}
             </Typography>
             
             <Stack 

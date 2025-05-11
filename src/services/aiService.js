@@ -19,6 +19,13 @@ export const processWithLlama = async (prompt) => {
 
 export const extractKeywordsWithLlama = async (userInput) => {
   try {
+    // Check for "forget" commands
+    const forgetRegex = /forget\s+(all|everything|keywords|preferences)/i;
+    if (forgetRegex.test(userInput)) {
+      // Return a special command to clear keywords
+      return ["__CLEAR_KEYWORDS__"];
+    }
+    
     // Create a more focused prompt for keyword extraction
     const prompt = `
 You are extracting keywords from a car rental customer query to match with our database.
@@ -34,6 +41,8 @@ Categories in our database:
 Process these user preferences:
 1. If a preference contradicts an earlier one (e.g., "cheap" then "expensive"), use the latest preference
 2. Return ONLY simple string keywords, no objects or structured data
+3. Be specific and precise with keyword extraction
+4. IMPORTANT: The most recent mentioned attributes are the most important ones
 
 User query: "${userInput}"
 
@@ -120,30 +129,35 @@ export const generateConversationResponse = async (userInput, keywords, conversa
     
     // Create a summary of top matching cars for the AI to reference
     const carSummary = topCars.length > 0 ? 
-      topCars.map(car => `${car.name} (${car.type}, $${car.price.toLocaleString()}, features: ${car.features.slice(0, 3).join(", ")})`).join("\n") : 
+      topCars.map(car => `${car.name} (${car.type}, AED ${car.price.toLocaleString()}, features: ${car.features.slice(0, 3).join(", ")})`).join("\n") : 
       "No specific cars match yet.";
+    
+    // Get latest keyword for emphasis
+    const latestKeyword = keywords.length > 0 ? keywords[keywords.length - 1] : "";
     
     // Create the prompt for the LLaMA model
     const prompt = `
-You are a helpful car shopping assistant having a conversation with a customer about what car they might want to buy.
-You NEVER reveal what specific keywords you've extracted from the customer's message.
+You are a knowledgeable car dealership AI assistant. You have DIRECT ACCESS to the dealership's inventory system.
+The customer is looking for a car and you are helping them find the perfect vehicle based on their preferences.
 
-Current customer preferences identified: ${keywords.join(", ")}
-
-Top matching cars:
+INVENTORY ACCESS RESULT:
+Current customer preferences: ${keywords.join(", ")}
+Latest search priority: ${latestKeyword}
+Top matching vehicles in inventory:
 ${carSummary}
 
-Your task is to:
-1. Have a natural, helpful conversation to understand the customer's car needs
-2. If they haven't mentioned budget, ask about it
-3. If they haven't mentioned car type (sedan, SUV, etc.), ask about it
-4. If they haven't mentioned use case (commuting, family, etc.), ask about it
-5. If they ask for recommendations, mention AT MOST ONE specific car that matches their needs
+RESPONSE GUIDELINES:
+1. Speak as if you have DIRECT ACCESS to the dealership's inventory. Say things like "I see we have" or "Looking at our inventory"
+2. Prioritize recommendations that match the LATEST preference if provided
+3. Sound confident and knowledgeable about the cars
+4. Mention specific cars by name that match their criteria
+5. If they haven't specified enough details, ask targeted questions about their needs (family, budget, etc.)
+6. If a customer asks about multiple criteria (e.g., "family" then "electric"), prioritize showing cars that match BOTH criteria
+7. Respond in a natural, conversational way as a helpful dealership assistant
 
 ${conciseMode ? 'Keep your responses very concise (1-2 sentences maximum).' : ''}
-Always respond in a conversational, helpful tone. Don't list features or specifications unless specifically asked.
 
-User input: "${userInput}"
+Customer input: "${userInput}"
 Your response:`;
     
     const response = await processWithLlama(prompt);

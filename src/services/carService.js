@@ -21,73 +21,132 @@ export const findMatchingCars = (keywords) => {
   // Import your car data
   const cars = require('../assets/data/cars.json');
   
-  // Filter cars based on the keywords
-  return cars.filter(car => {
-    // Check if any keyword is included in car properties
-    return keywords.some(keyword => {
-      // Ensure keyword is a string
-      if (typeof keyword !== 'string') {
-        console.warn(`Invalid keyword type: ${typeof keyword}`, keyword);
+  // Create a copy of the keywords array to work with
+  const keywordsLower = keywords
+    .filter(keyword => typeof keyword === 'string')
+    .map(keyword => keyword.toLowerCase());
+    
+  // Get the most recent keyword for prioritization
+  const latestKeyword = keywordsLower.length > 0 ? keywordsLower[keywordsLower.length - 1] : null;
+  
+  // Separate keywords by category for progressive filtering
+  const typeKeywords = keywordsLower.filter(kw => 
+    ['sedan', 'suv', 'convertible', 'coupe', 'truck', 'van', 'hatchback', 'wagon'].includes(kw)
+  );
+  
+  const featureKeywords = keywordsLower.filter(kw => 
+    ['electric', 'hybrid', 'fast', 'luxury', 'premium', 'budget', 'affordable', 
+     'family', 'business', 'spacious', 'comfortable', 'safe', 'reliable'].includes(kw)
+  );
+  
+  const priceKeywords = keywordsLower.filter(kw => 
+    ['cheap', 'affordable', 'budget', 'expensive', 'luxury', 'premium', 'mid-range'].includes(kw)
+  );
+  
+  // Start with all cars and progressively filter
+  let filteredCars = [...cars];
+  
+  // Filter by car type if specified
+  if (typeKeywords.length > 0) {
+    filteredCars = filteredCars.filter(car => {
+      return typeKeywords.some(keyword => car.type && car.type.toLowerCase().includes(keyword));
+    });
+  }
+    // Filter by features
+  if (featureKeywords.length > 0) {
+    filteredCars = filteredCars.filter(car => {
+      return featureKeywords.every(keyword => {
+        // For feature keywords, check features array and description
+        return (car.features && 
+                car.features.some(feature => feature.toLowerCase().includes(keyword))) ||
+               (car.description && car.description.toLowerCase().includes(keyword));
+      });
+    });
+  }
+  
+  // Filter by price range
+  if (priceKeywords.length > 0) {
+    filteredCars = filteredCars.filter(car => {
+      return priceKeywords.some(keyword => {
+        if ((keyword === 'cheap' || keyword === 'affordable' || keyword === 'budget') && car.price < 30000) {
+          return true;
+        }
+        if ((keyword === 'expensive' || keyword === 'luxury' || keyword === 'premium') && car.price > 60000) {
+          return true;
+        }
+        if (keyword === 'mid-range' && car.price >= 30000 && car.price <= 60000) {
+          return true;
+        }
         return false;
+      });
+    });
+  }
+  
+  // Prioritize cars that match most recent keyword
+  if (latestKeyword && filteredCars.length > 0) {
+    // Add relevance scores based on keyword matches, with highest priority to latest keyword
+    filteredCars = filteredCars.map(car => {
+      let relevanceScore = 0;
+      
+      // Increase score significantly if matches latest keyword
+      if (car.type && car.type.toLowerCase().includes(latestKeyword)) {
+        relevanceScore += 100;
       }
       
-      const keywordLower = keyword.toLowerCase();
+      if (car.features && car.features.some(feature => feature.toLowerCase().includes(latestKeyword))) {
+        relevanceScore += 100;
+      }
       
-      // Check if the keyword matches car type
-      if (car.type && car.type.toLowerCase().includes(keywordLower)) {
+      if (car.description && car.description.toLowerCase().includes(latestKeyword)) {
+        relevanceScore += 50;
+      }
+      
+      // Add score for other keyword matches
+      keywordsLower.forEach(keyword => {
+        if (keyword !== latestKeyword) {
+          if (car.type && car.type.toLowerCase().includes(keyword)) {
+            relevanceScore += 20;
+          }
+          
+          if (car.features && car.features.some(feature => feature.toLowerCase().includes(keyword))) {
+            relevanceScore += 15;
+          }
+          
+          if (car.description && car.description.toLowerCase().includes(keyword)) {
+            relevanceScore += 5;
+          }
+        }
+      });
+      
+      return { ...car, relevanceScore };
+    }).sort((a, b) => b.relevanceScore - a.relevanceScore);
+  }
+  
+  // If no cars match all filters, try to match just the latest keyword
+  if (filteredCars.length === 0 && keywords.length > 0) {
+    const latestKeyword = keywords[keywords.length - 1].toLowerCase();
+    
+    return cars.filter(car => {
+      // Match against type
+      if (car.type && car.type.toLowerCase().includes(latestKeyword)) {
         return true;
       }
       
-      // Check if any of the car features include the keyword
-      if (car.features && Array.isArray(car.features) && 
-          car.features.some(feature => 
-            typeof feature === 'string' && feature.toLowerCase().includes(keywordLower)
-          )) {
+      // Match against features
+      if (car.features && car.features.some(f => f.toLowerCase().includes(latestKeyword))) {
         return true;
       }
       
-      // Check if price range keywords match
-      if ((keywordLower === 'cheap' || keywordLower === 'affordable' || keywordLower === 'budget') && 
-          car.price < 30000) {
-        return true;
-      }
-      
-      if ((keywordLower === 'expensive' || keywordLower === 'luxury' || keywordLower === 'premium') && 
-          car.price > 60000) {
-        return true;
-      }
-      
-      if (keywordLower === 'mid-range' && car.price >= 30000 && car.price <= 60000) {
-        return true;
-      }
-      
-      // Check name and description
-      if ((car.name && car.name.toLowerCase().includes(keywordLower)) || 
-          (car.description && car.description.toLowerCase().includes(keywordLower))) {
+      // Match against description
+      if (car.description && car.description.toLowerCase().includes(latestKeyword)) {
         return true;
       }
       
       return false;
     });
-  }).sort((a, b) => {
-    // Calculate relevance score for car A
-    const scoreA = keywords.filter(keyword => {
-      if (typeof keyword !== 'string') return false;
-      const kw = keyword.toLowerCase();
-      return a.features.some(f => f.toLowerCase().includes(kw)) || 
-             a.type.toLowerCase().includes(kw);
-    }).length;
-    
-    // Calculate relevance score for car B
-    const scoreB = keywords.filter(keyword => {
-      if (typeof keyword !== 'string') return false;
-      const kw = keyword.toLowerCase();
-      return b.features.some(f => f.toLowerCase().includes(kw)) || 
-             b.type.toLowerCase().includes(kw);
-    }).length;
-    
-    return scoreB - scoreA; // Sort by highest relevance
-  });
+  }
+  
+  return filteredCars;
 };
 
 // Get similar cars that are in store

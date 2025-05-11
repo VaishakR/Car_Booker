@@ -1,0 +1,112 @@
+/* Cyberpunk Style Additions */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800&display=swap');
+
+/* Global styles */
+.orbitron {
+    font-family: 'Orbitron', sans-serif !important;
+}
+
+.exo {
+    font-family: 'Exo 2', sans-serif !important;
+}
+
+/* Glow effects */
+.glow-text {
+    text-shadow: 0 0 10px rgba(255, 184, 0, 0.7) !important;
+}
+
+.glow-box {
+    box-shadow: 0 0 20px rgba(255, 184, 0, 0.3) !important;
+}
+
+/* Custom button effects */
+.cyber-button {
+    background: linear-gradient(45deg, #FFB800, #CC9200);
+    transition: all 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 20px rgba(255, 184, 0, 0.3) !important;
+}
+
+.cyber-button::after {
+    content: "";
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    top: 0;
+    left: -30%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -30%; }
+    100% { left: 130%; }
+}
+
+/* Car card styling */
+.car-card {
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(255, 184, 0, 0.2) !important;
+}
+
+.car-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 15px 30px rgba(255, 184, 0, 0.2) !important;
+}
+
+/* Hexagon shape for icons */
+.hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Pulse animation */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 184, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 184, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 184, 0, 0);
+    }
+}
+
+/* Scanline effect */
+.scanline {
+    position: relative;
+    overflow: hidden;
+}
+
+.scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 184, 0, 0.3);
+    animation: scan 8s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+/* Voice assistant styling */
+.voice-assistant {
+    border: 1px solid rgba(255, 184, 0, 0.5);
+    box-shadow: 0 0 30px rgba(255, 184, 0, 0.2);
+}

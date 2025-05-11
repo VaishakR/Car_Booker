@@ -1,0 +1,544 @@
+[⚠️ Suspicious Content] <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusDrive | Futuristic Car Rentals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        }
+        
+        .glow-box {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .cyber-gradient {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+        
+        .cyber-button {
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.3);
+        }
+        
+        .car-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+        }
+        
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+            }
+        }
+        
+        .scanline {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scanline::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(0, 255, 255, 0.3);
+            animation: scan 8s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% {
+                top: 0%;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+        
+        .voice-assistant {
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="cyber-gradient py-4 px-6 sticky top-0 z-50 glow-box">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="hexagon bg-cyan-500 w-10 h-10 flex items-center justify-center">
+                    <i class="fas fa-car text-xl text-black"></i>
+                </div>
+                <span class="orbitron text-2xl font-bold glow-text">NEXUSDRIVE</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-white hover:text-cyan-400 transition">Home</a>
+                <a href="#" class="text-white hover:text-cyan-400 transition">Vehicles</a>
+                <a href="#" class="text-white hover:text-cyan-400 transition">Services</a>
+                <a href="#" class="text-white hover:text-cyan-400 transition">About</a>
+                <a href="#" class="text-white hover:text-cyan-400 transition">Contact</a>
+            </div>
+            <button class="cyber-button px-6 py-2 rounded-full font-bold text-white md:block hidden">
+                SIGN IN
+            </button>
+            <button class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-60 z-10"></div>
+        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-through-a-city-at-night-41547-large.mp4" type="video/mp4">
+        </video>
+        <div class="relative z-20 py-32 px-6">
+            <div class="container mx-auto">
+                <div class="max-w-2xl">
+                    <h1 class="orbitron text-5xl md:text-7xl font-bold mb-6 glow-text">FUTURE OF <span class="text-cyan-400">MOBILITY</span></h1>
+                    <p class="text-xl mb-8 text-gray-300">Experience the next generation of car rentals with our AI-powered platform and premium vehicle selection.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="cyber-button px-8 py-4 rounded-full font-bold text-white flex items-center justify-center space-x-2">
+                            <i class="fas fa-microphone"></i>
+                            <span>VOICE ASSISTANT</span>
+                        </button>
+                        <button class="bg-transparent border-2 border-cyan-400 px-8 py-4 rounded-full font-bold text-cyan-400 hover:bg-cyan-400 hover:text-black transition">
+                            BROWSE CARS
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent z-20"></div>
+    </section>
+
+    <!-- Voice Assistant Section -->
+    <section class="py-20 px-6 bg-black">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl md:text-5xl font-bold mb-4 glow-text">AI VOICE <span class="text-cyan-400">ASSISTANT</span></h2>
+                <p class="max-w-2xl mx-auto text-gray-400">Our advanced AI will help you find the perfect vehicle tailored to your needs through natural conversation.</p>
+            </div>
+            
+            <div class="voice-assistant bg-gray-900 rounded-2xl p-8 max-w-4xl mx-auto relative overflow-hidden scanline">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                        <div class="relative">
+                            <div class="w-40 h-40 bg-cyan-900 rounded-full flex items-center justify-center pulse">
+                                <div class="w-32 h-32 bg-cyan-800 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-robot text-5xl text-cyan-400"></i>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-cyan-400 text-black px-4 py-1 rounded-full text-sm font-bold">
+                                ONLINE
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 md:pl-8">
+                        <div class="bg-gray-800 rounded-lg p-6 mb-6">
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-robot text-black"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-white">Hello! I'm Nova, your AI car rental assistant. How can I help you find your perfect vehicle today?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition">
+                                <i class="fas fa-microphone"></i>
+                                <span>SPEAK NOW</span>
+                            </button>
+                            <button class="bg-transparent border border-gray-700 hover:border-cyan-400 text-gray-400 hover:text-cyan-400 px-4 py-2 rounded-lg flex items-center space-x-2 transition">
+                                <i class="fas fa-keyboard"></i>
+                                <span>TYPE INSTEAD</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute top-0 right-0 m-4 text-gray-500">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="py-20 px-6 cyber-gradient">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl md:text-5xl font-bold mb-4 glow-text">FEATURED <span class="text-cyan-400">VEHICLES</span></h2>
+                <p class="max-w-2xl mx-auto text-gray-300">Explore our selection of premium vehicles available for immediate rental</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Car 1 -->
+                <div class="car-card bg-gray-900 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Tesla Model S" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-cyan-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+                            AVAILABLE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="orbitron text-xl font-bold">TESLA MODEL S</h3>
+                                <p class="text-gray-400">Plaid Edition</p>
+                            </div>
+                            <div class="text-cyan-400 text-xl font-bold">$199<span class="text-sm text-gray-400"></span></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">Autopilot</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">Ludicrous Mode</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">4 Seats</span>
+                        </div>
+                        <button class="w-full cyber-button py-3 rounded-lg font-bold flex items-center justify-center space-x-2">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>RESERVE NOW</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Car 2 -->
+                <div class="car-card bg-gray-900 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Porsche Taycan" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-cyan-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+                            AVAILABLE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="orbitron text-xl font-bold">PORSCHE TAYCAN</h3>
+                                <p class="text-gray-400">Turbo S</p>
+                            </div>
+                            <div class="text-cyan-400 text-xl font-bold">$249<span class="text-sm text-gray-400"></span></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">750 HP</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">AWD</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">4 Seats</span>
+                        </div>
+                        <button class="w-full cyber-button py-3 rounded-lg font-bold flex items-center justify-center space-x-2">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>RESERVE NOW</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Car 3 -->
+                <div class="car-card bg-gray-900 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1624702045560-77c0f2186f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Audi e-tron GT" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-cyan-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+                            AVAILABLE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="orbitron text-xl font-bold">AUDI E-TRON GT</h3>
+                                <p class="text-gray-400">RS Edition</p>
+                            </div>
+                            <div class="text-cyan-400 text-xl font-bold">$229<span class="text-sm text-gray-400"></span></div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">637 HP</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">Quattro</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">4 Seats</span>
+                        </div>
+                        <button class="w-full cyber-button py-3 rounded-lg font-bold flex items-center justify-center space-x-2">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>RESERVE NOW</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-transparent border-2 border-cyan-400 px-8 py-4 rounded-full font-bold text-cyan-400 hover:bg-cyan-400 hover:text-black transition">
+                    VIEW ALL VEHICLES
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 px-6 bg-black">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl md:text-5xl font-bold mb-4 glow-text">HOW IT <span class="text-cyan-400">WORKS</span></h2>
+                <p class="max-w-2xl mx-auto text-gray-400">Renting your dream car has never been easier with our futuristic platform</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-gray-900 rounded-xl p-8 text-center hover:transform hover:-translate-y-4 transition-all duration-300">
+                    <div class="hexagon bg-cyan-900 w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-microphone text-3xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="orbitron text-2xl font-bold mb-4">1. TALK TO AI</h3>
+                    <p class="text-gray-400 mb-4">Start a conversation with our AI assistant to find the perfect vehicle for your needs.</p>
+                    <div class="flex justify-center">
+                        <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center text-black font-bold">1</div>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-gray-900 rounded-xl p-8 text-center hover:transform hover:-translate-y-4 transition-all duration-300">
+                    <div class="hexagon bg-cyan-900 w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-car text-3xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="orbitron text-2xl font-bold mb-4">2. SELECT VEHICLE</h3>
+                    <p class="text-gray-400 mb-4">Browse through our curated selection of premium vehicles and choose your favorite.</p>
+                    <div class="flex justify-center">
+                        <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center text-black font-bold">2</div>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-gray-900 rounded-xl p-8 text-center hover:transform hover:-translate-y-4 transition-all duration-300">
+                    <div class="hexagon bg-cyan-900 w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-key text-3xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="orbitron text-2xl font-bold mb-4">3. DRIVE AWAY</h3>
+                    <p class="text-gray-400 mb-4">Complete the digital paperwork and pick up your vehicle at your convenience.</p>
+                    <div class="flex justify-center">
+                        <div class="w-8 h-8 rounded-full bg-cyan-400 flex items-center justify-center text-black font-bold">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-6 cyber-gradient">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-4xl md:text-5xl font-bold mb-4 glow-text">USER <span class="text-cyan-400">TESTIMONIALS</span></h2>
+                <p class="max-w-2xl mx-auto text-gray-300">What our customers say about their NexusDrive experience</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-400">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J." class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sarah J.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"The AI assistant made finding the perfect car so easy! I told it what I needed and it suggested three amazing options. The Tesla Model S was incredible!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-400">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Michael T.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Most futuristic rental experience ever! The Porsche Taycan was in perfect condition and the digital check-in process took less than 2 minutes."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-400">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica L." class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Jessica L.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"I've rented from many companies but NexusDrive's technology is years ahead. The voice assistant remembered my preferences from last time!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 px-6 bg-black relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 animate-pulse"></div>
+        </div>
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="orbitron text-4xl md:text-6xl font-bold mb-8 glow-text">READY FOR THE <span class="text-cyan-400">FUTURE</span> OF MOBILITY?</h2>
+                <p class="text-xl mb-12 text-gray-300">Join thousands of satisfied customers experiencing the next generation of car rentals.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="cyber-button px-8 py-4 rounded-full font-bold text-white flex items-center justify-center space-x-2">
+                        <i class="fas fa-microphone"></i>
+                        <span>TALK TO AI ASSISTANT</span>
+                    </button>
+                    <button class="bg-transparent border-2 border-cyan-400 px-8 py-4 rounded-full font-bold text-cyan-400 hover:bg-cyan-400 hover:text-black transition">
+                        BROWSE ALL VEHICLES
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="hexagon bg-cyan-500 w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-car text-xl text-black"></i>
+                        </div>
+                        <span class="orbitron text-2xl font-bold glow-text">NEXUSDRIVE</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">The future of car rentals powered by AI and cutting-edge technology.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="orbitron text-xl font-bold mb-6 text-white">COMPANY</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="orbitron text-xl font-bold mb-6 text-white">SUPPORT</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">Safety</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition">Accessibility</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="orbitron text-xl font-bold mb-6 text-white">CONTACT</h3>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400"><i class="fas fa-map-marker-alt mr-2 text-cyan-400"></i> 123 Future Street, Neo City</li>
+                        <li class="text-gray-400"><i class="fas fa-phone-alt mr-2 text-cyan-400"></i> +1 (555) 123-4567</li>
+                        <li class="text-gray-400"><i class="fas fa-envelope mr-2 text-cyan-400"></i> info@nexusdrive.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 mb-4 md:mb-0">© 2023 NexusDrive. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-cyan-400 transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-cyan-400 transition">Terms of Service</a>
+                    <a href="#" class="text-gray-500 hover:text-cyan-400 transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for voice assistant button
+        document.querySelectorAll('.cyber-button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.querySelector('i').classList.add('animate-bounce');
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.querySelector('i').classList.remove('animate-bounce');
+            });
+        });
+        
+        // Car card hover effect enhancement
+        document.querySelectorAll('.car-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const img = card.querySelector('img');
+                img.style.transform = 'scale(1.05)';
+                img.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const img = card.querySelector('img');
+                img.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

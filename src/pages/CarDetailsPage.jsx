@@ -52,9 +52,8 @@ const CarDetailsPage = () => {
       >
         Back to Cars
       </Button>
-      
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={6}>
+        <Grid container spacing={2}>
+        <Grid item xs={12} md={5}>
           <Box 
             component="img"
             src={car.image || `/assets/cars/${car.image}`}
@@ -71,9 +70,8 @@ const CarDetailsPage = () => {
           />
         </Grid>
         
-        <Grid item xs={12} md={6}>
-          <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="h3" component="h1" sx={{ fontWeight: 700 }}>
+        <Grid item xs={12} md={7}>          <Box sx={{ mb: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Typography variant="h4" component="h1" sx={{ fontWeight: 700 }}>
               {car.name}
             </Typography>
             {!car.inStore && (
@@ -81,44 +79,51 @@ const CarDetailsPage = () => {
             )}
           </Box>
           
-          <Typography variant="h5" color="primary" sx={{ mb: 2, fontWeight: 700 }}>
-            ${car.price.toLocaleString()}
+          <Typography variant="h5" color="primary" sx={{ mb: 1, fontWeight: 700 }}>
+            AED {car.price.toLocaleString()}
           </Typography>
-          
-          <Typography variant="body1" sx={{ mb: 3 }}>
+            <Typography variant="body2" sx={{ mb: 1.5 }}>
             {car.description}
           </Typography>
           
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', mb: 3, gap: 1 }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', mb: 2, gap: 0.5 }}>
             {car.features.map((feature, index) => (
-              <Chip key={index} label={feature} size="medium" />
+              <Chip 
+                key={index} 
+                label={feature} 
+                size="small" 
+                sx={{ 
+                  height: '24px', 
+                  fontSize: '0.7rem',
+                  '& .MuiChip-label': { px: 1 }
+                }} 
+              />
             ))}
           </Box>
           
           <Button 
             variant="contained"
-            size="large"
+            size="medium"
             fullWidth
             disabled={!car.inStore}
-            sx={{ mb: 3 }}
+            sx={{ mb: 2 }}
           >
             {car.inStore ? 'Rent Now' : 'Currently Unavailable'}
           </Button>
+            <Divider sx={{ my: 1.5 }} />
           
-          <Divider sx={{ my: 3 }} />
-          
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 0.5 }}>
             Specifications
           </Typography>
           
-          <Grid container spacing={2} sx={{ mb: 3 }}>
+          <Grid container spacing={1} sx={{ mb: 2 }}>
             {Object.entries(car.specs).map(([key, value]) => (
-              <Grid item xs={6} key={key}>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Typography variant="body2" color="text.secondary" sx={{ mr: 1, textTransform: 'capitalize' }}>
-                    {key.replace(/_/g, ' ')}:
+              <Grid item xs={4} key={key}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', mb: 0.5 }}>
+                  <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', fontSize: '0.7rem' }}>
+                    {key.replace(/_/g, ' ')}
                   </Typography>
-                  <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                  <Typography variant="body2" sx={{ fontWeight: 600 }}>
                     {value}
                   </Typography>
                 </Box>
@@ -126,22 +131,24 @@ const CarDetailsPage = () => {
             ))}
           </Grid>
           
-          <Divider sx={{ my: 3 }} />
-          
-          <Grid container spacing={2}>
+          <Divider sx={{ my: 1.5 }} />
+            <Grid container spacing={1.5}>
             <Grid item xs={12} md={6}>
-              <Card sx={{ height: '100%', bgcolor: '#f9f9f9' }}>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
+              <Card sx={{ bgcolor: '#f9f9f9' }} variant="outlined">
+                <CardContent sx={{ py: 1, px: 2, '&:last-child': { pb: 1 } }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'success.main', mb: 0.5 }}>
                     Pros
                   </Typography>
-                  <List dense>
+                  <List dense disablePadding>
                     {car.pros.map((pro, index) => (
-                      <ListItem key={index} sx={{ py: 0.5 }}>
-                        <ListItemIcon sx={{ minWidth: 36 }}>
-                          <CheckIcon color="success" />
+                      <ListItem key={index} sx={{ py: 0.25 }}>
+                        <ListItemIcon sx={{ minWidth: 24 }}>
+                          <CheckIcon sx={{ fontSize: 16 }} color="success" />
                         </ListItemIcon>
-                        <ListItemText primary={pro} />
+                        <ListItemText 
+                          primary={pro} 
+                          primaryTypographyProps={{ variant: 'body2' }} 
+                        />
                       </ListItem>
                     ))}
                   </List>
@@ -150,18 +157,21 @@ const CarDetailsPage = () => {
             </Grid>
             
             <Grid item xs={12} md={6}>
-              <Card sx={{ height: '100%', bgcolor: '#f9f9f9' }}>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
+              <Card sx={{ bgcolor: '#f9f9f9' }} variant="outlined">
+                <CardContent sx={{ py: 1, px: 2, '&:last-child': { pb: 1 } }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'error.main', mb: 0.5 }}>
                     Cons
                   </Typography>
-                  <List dense>
+                  <List dense disablePadding>
                     {car.cons.map((con, index) => (
-                      <ListItem key={index} sx={{ py: 0.5 }}>
-                        <ListItemIcon sx={{ minWidth: 36 }}>
-                          <CloseIcon color="error" />
+                      <ListItem key={index} sx={{ py: 0.25 }}>
+                        <ListItemIcon sx={{ minWidth: 24 }}>
+                          <CloseIcon sx={{ fontSize: 16 }} color="error" />
                         </ListItemIcon>
-                        <ListItemText primary={con} />
+                        <ListItemText 
+                          primary={con}
+                          primaryTypographyProps={{ variant: 'body2' }}
+                        />
                       </ListItem>
                     ))}
                   </List>

@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { CalendarMonth as CalendarIcon } from '@mui/icons-material';
 import ElectricCarIcon from '@mui/icons-material/ElectricCar';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -40,178 +41,138 @@ const CarCard = ({ car, compact = false }) => {
   
   return (
     <motion.div
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -10 }}
       transition={{ type: 'spring', stiffness: 300 }}
+      className="car-card"
     >
       <Card 
         sx={{ 
-          height: '100%', 
+          height: compact ? '100%' : '100%',
           display: 'flex', 
-          flexDirection: compact ? 'row' : 'column',
+          flexDirection: 'column',
           position: 'relative',
+          width: '100%',
+          backgroundColor: 'rgba(25, 29, 40, 0.8)',
+          borderRadius: '12px',
+          border: '1px solid rgba(255, 184, 0, 0.2)',
+          overflow: 'hidden',
+          transition: 'all 0.3s ease',
+          backdropFilter: 'blur(5px)',
+          '&:hover': {
+            boxShadow: '0 15px 30px rgba(255, 184, 0, 0.2)',
+            transform: 'translateY(-10px)'
+          }
         }}
       >
-        {!car.inStore && (
-          <Chip 
-            label="Out of Stock" 
-            color="error" 
-            size="small"
+        <Box sx={{ position: 'relative' }}>
+          <CardMedia
+            component="img"
+            height={compact ? 100 : 200}
+            image={car.image || `/assets/cars/${car.id}.jpg`}
+            alt={car.name}
+            onError={(e) => {
+              e.target.src = '/assets/cars/default-car.jpg';
+            }}
             sx={{ 
-              position: 'absolute', 
-              top: 12, 
-              right: 12, 
-              zIndex: 1
+              objectFit: 'cover',
+              transition: 'transform 0.3s ease',
+              '&:hover': {
+                transform: 'scale(1.05)'
+              }
             }}
           />
-        )}
+          
+          <Box 
+            sx={{ 
+              position: 'absolute', 
+              top: 16, 
+              right: 16, 
+              bgcolor: car.inStore ? 'rgba(0, 255, 255, 0.9)' : 'error.main',
+              color: 'black',
+              px: 2,
+              py: 0.5,
+              borderRadius: '50px',
+              fontWeight: 'bold',
+              fontSize: '0.75rem'
+            }}
+          >
+            {car.inStore ? 'AVAILABLE' : 'OUT OF STOCK'}
+          </Box>
+        </Box>
         
-        <CardMedia
-          component="img"
-          height={compact ? 100 : 160}
-          width={compact ? 100 : 'auto'}
-          image={car.image || `/assets/cars/${car.image}`}
-          alt={car.name}
-          onError={(e) => {
-            e.target.src = '/assets/cars/default-car.jpg';
-          }}
-          sx={{ 
-            objectFit: 'cover',
-            width: compact ? 100 : '100%'
-          }}
-        />
-        
-        <CardContent sx={{ flexGrow: 1, p: compact ? 1.5 : 3 }}>
-          <Typography variant={compact ? "body1" : "h6"} gutterBottom sx={{ fontWeight: 600 }}>
-            {car.name}
-          </Typography>
-          
-          {!compact && (
-            <Typography 
-              variant="body2" 
-              color="text.secondary" 
-              sx={{ 
-                mb: 2,
-                display: '-webkit-box',
-                overflow: 'hidden',
-                WebkitBoxOrient: 'vertical',
-                WebkitLineClamp: 2,
-                height: '40px'
-              }}
-            >
-              {car.description}
-            </Typography>
-          )}
-          
-          {!compact && (
-            <Stack 
-              direction="row" 
-              spacing={2} 
-              sx={{ mb: 2 }}
-            >
-              {car.type && (
-                <Chip 
-                  label={car.type} 
-                  size="small" 
-                  color="secondary" 
-                  variant="outlined"
-                  sx={{ borderRadius: '4px' }}
-                />
-              )}
-              
-              {car.features && car.features.length > 0 && (
-                <Chip 
-                  label={car.features[0]} 
-                  size="small"
-                  sx={{ borderRadius: '4px', backgroundColor: '#f5f5f5' }}
-                />
-              )}
-            </Stack>
-          )}
-          
-          {compact ? (
-            // Simplified version for compact mode
-            <Box sx={{ mt: 0.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <CardContent sx={{ 
+          flexGrow: 1,
+          p: 3
+        }}>
+          <Box sx={{ mb: 2 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
+              <Box>
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    fontWeight: 700,
+                    fontFamily: "'Orbitron', sans-serif",
+                    mb: 0.5
+                  }}
+                >
+                  {car.name.toUpperCase()}
+                </Typography>
+                <Typography 
+                  variant="body2" 
+                  color="text.secondary"
+                  sx={{ opacity: 0.8 }}
+                >
+                  {car.type}
+                </Typography>
+              </Box>
               <Typography 
-                variant="body2" 
-                color="primary"
-                sx={{ fontWeight: 700 }}
+                sx={{ 
+                  color: 'primary.main',                fontWeight: 700,
+                  fontSize: '1.25rem'
+                }}
               >
-                ${formattedPrice}
+                AED {formattedPrice}<Typography component="span" variant="caption" sx={{ color: 'text.secondary', ml: 0.5 }}></Typography>
               </Typography>
-              
+            </Box>
+          </Box>
+          
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+            {car.features && car.features.slice(0, 3).map((feature, index) => (
               <Chip 
-                label={car.type} 
-                size="small" 
-                variant="outlined"
-                sx={{ fontSize: '0.7rem', height: 24 }}
+                key={index}
+                label={feature}
+                size="small"
+                sx={{ 
+                  bgcolor: 'rgba(10, 10, 10, 0.8)',
+                  color: 'text.secondary',
+                  borderRadius: '4px',
+                  fontSize: '0.7rem',
+                  height: '24px'
+                }}
               />
-            </Box>
-          ) : (
-            // Full version for normal mode
-            <Box 
-              sx={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                mb: 2
-              }}
-            >
-              {car.specs.acceleration && (
-                <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
-                  <SpeedIcon fontSize="small" sx={{ mr: 0.5, color: 'text.secondary' }} />
-                  <Typography variant="body2" color="text.secondary">
-                    {car.specs.acceleration}
-                  </Typography>
-                </Box>
-              )}
-              
-              {car.specs.seating && (
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <AirlineSeatReclineNormalIcon fontSize="small" sx={{ mr: 0.5, color: 'text.secondary' }} />
-                  <Typography variant="body2" color="text.secondary">
-                    {car.specs.seating} seats
-                  </Typography>
-                </Box>
-              )}
-              
-              {specInfo && (
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  {specInfo.icon}
-                  <Typography variant="body2" color="text.secondary" sx={{ ml: 0.5 }}>
-                    {specInfo.text}
-                  </Typography>
-                </Box>
-              )}
-            </Box>
-          )}
+            ))}
+          </Box>
           
           {!compact && (
-            <Box 
+            <Button 
+              fullWidth
+              variant="contained"
+              color="primary"
+              className="cyber-button"
               sx={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
+                py: 1.5, 
+                mt: 'auto',
+                fontWeight: 'bold',
+                borderRadius: '8px',
+                display: 'flex',
                 alignItems: 'center',
-                pt: 1,
-                borderTop: '1px solid #f0f0f0'
+                gap: 1
               }}
+              onClick={() => navigate(`/car/${car.id}`)}
+              startIcon={<CalendarIcon />}
             >
-              <Typography 
-                variant="h6" 
-                color="primary"
-                sx={{ fontWeight: 700 }}
-              >
-                ${formattedPrice}
-              </Typography>
-              
-              <Button 
-                variant="outlined"
-                size="small"
-                disabled={!car.inStore}
-                onClick={() => navigate(`/car/${car.id}`)}
-              >
-                {car.inStore ? 'View Details' : 'Out of Stock'}
-              </Button>
-            </Box>
+              RESERVE NOW
+            </Button>
           )}
         </CardContent>
       </Card>
