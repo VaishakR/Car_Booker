@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "name": "Tesla Model S",
+    "type": "sedan",
+    "description": "Electric luxury car with cutting-edge technology and impressive acceleration",
+    "features": ["electric", "fast", "luxury", "autopilot", "high tech", "long range"],
+    "specs": {
+      "range": "390 miles",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "155 mph",
+      "seating": 5
+    },
+    "price": 89990,
+    "image": "https://i.pinimg.com/736x/95/17/58/95175882ef1ac88ebbf88a4cddfd9fa2.jpg",
+    "inStore": true,
+    "pros": ["Longest electric range", "Premium interior", "Advanced autopilot", "Supercharger network"],
+    "cons": ["High price point", "Touchscreen controls for everything", "Large size for city parking"]
+  },
+  {
+    "id": 2,
+    "name": "Honda Accord",
+    "type": "sedan",
+    "description": "Reliable midsize family sedan with good fuel economy and comfortable interior",
+    "features": ["reliable", "family", "fuel efficient", "comfortable", "affordable", "practical"],
+    "specs": {
+      "mpg": "30 city / 38 highway",
+      "acceleration": "0-60 mph in 7.2s",
+      "horsepower": "192 hp",
+      "seating": 5
+    },
+    "price": 26120,
+    "image": "https://p7.hiclipart.com/preview/635/543/709/car-2017-honda-accord-2018-honda-accord-honda-ridgeline-honda.jpg",
+    "inStore": true,
+    "pros": ["Excellent fuel economy", "Spacious interior", "Reliable performance", "Good resale value"],
+    "cons": ["Not as feature-rich as luxury options", "Basic styling", "Average performance"]
+  },
+  {
+    "id": 3,
+    "name": "Toyota RAV4",
+    "type": "suv",
+    "description": "Practical compact SUV with spacious interior and good reliability",
+    "features": ["suv", "family", "reliable", "spacious", "practical", "affordable"],
+    "specs": {
+      "mpg": "27 city / 35 highway",
+      "acceleration": "0-60 mph in 8.0s",
+      "topSpeed": "120 mph",
+      "seating": 5
+    },
+    "price": 28275,
+    "image": "https://icon2.cleanpng.com/20180625/bcq/kisspng-lexus-gs-car-2015-lexus-nx-200t-f-sport-price-5b307fb17b8325.4127474615299050735059.jpg",
+    "inStore": true,
+    "pros": ["Excellent reliability", "Good cargo capacity", "Available hybrid option", "Standard safety features"],
+    "cons": ["Not the most exciting to drive", "Base model lacks features", "Interior materials could be better"]
+  },
+  {
+    "id": 4,
+    "name": "Ford F-150",
+    "type": "truck",
+    "description": "America's best-selling pickup truck with powerful engine options and strong towing capacity",
+    "features": ["truck", "powerful", "towing", "utility", "work", "spacious"],
+    "specs": {
+      "mpg": "20 city / 24 highway",
+      "towing": "up to 14,000 lbs",
+      "payload": "up to 3,325 lbs",
+      "seating": "3-6"
+    },
+    "price": 33695,
+    "image": "https://w7.pngwing.com/pngs/717/703/png-transparent-blue-ford-2-door-pickup-truck-2016-ford-f-150-2017-ford-f-150-raptor-pickup-truck-car-ford-f-150-raptor-blue-car-truck-car-off-road-vehicle-thumbnail.png",
+    "inStore": false,
+    "pros": ["Best-in-class towing", "Innovative features", "Multiple engine options", "Spacious cabin"],
+    "cons": ["Large size makes city driving difficult", "Lower fuel economy than sedans", "Higher maintenance costs"]
+  },
+  {
+    "id": 5,
+    "name": "Porsche 911",
+    "type": "sports car",
+    "description": "Iconic high-performance sports car with precise handling and luxury features",
+    "features": ["fast", "sports car", "luxury", "powerful", "iconic", "handling"],
+    "specs": {
+      "acceleration": "0-60 mph in 2.8s",
+      "topSpeed": "182 mph",
+      "horsepower": "443-640 hp",
+      "seating": 4
+    },
+    "price": 106100,
+    "image": "https://p7.hiclipart.com/preview/312/926/528/2017-porsche-911-2018-porsche-911-carrera-4s-2018-porsche-911-carrera-s-porsche.jpg",
+    "inStore": true,
+    "pros": ["Exceptional handling", "Prestigious brand", "Strong resale value", "Daily usability for a sports car"],
+    "cons": ["High price tag", "Limited interior space", "Expensive maintenance", "Higher insurance costs"]
+  },
+  {
+    "id": 6,
+    "name": "Chevrolet Bolt EV",
+    "type": "hatchback",
+    "description": "Affordable all-electric hatchback with good range and practical interior space",
+    "features": ["electric", "affordable", "hatchback", "practical", "city car"],
+    "specs": {
+      "range": "259 miles",
+      "acceleration": "0-60 mph in 6.5s",
+      "topSpeed": "93 mph",
+      "seating": 5
+    },
+    "price": 25600,
+    "image": "https://p7.hiclipart.com/preview/275/79/812/2018-chevrolet-bolt-ev-chevrolet-volt-chevrolet-chevy-malibu-electric-vehicle-chevrolet.jpg",
+    "inStore": false,
+    "pros": ["Affordable EV option", "Practical hatchback design", "Decent electric range", "Low operating costs"],
+    "cons": ["Interior quality not premium", "Slower charging than competitors", "Less advanced tech than Tesla"]
+  },
+  {
+    "id": 7,
+    "name": "Honda Odyssey",
+    "type": "minivan",
+    "description": "Family-friendly minivan with versatile seating, ample cargo space, and modern features",
+    "features": ["family", "minivan", "spacious", "practical", "versatile", "comfortable"],
+    "specs": {
+      "mpg": "19 city / 28 highway",
+      "acceleration": "0-60 mph in 7.6s",
+      "topSpeed": "111 mph",
+      "seating": 8
+    },
+    "price": 37340,
+    "image": "https://img.favpng.com/15/16/23/2019-honda-odyssey-car-minivan-2018-honda-odyssey-ex-l-png-favpng-cnekBhjJ3hTwd25H0kpGEZTEj.jpg",
+    "inStore": true,
+    "pros": ["Maximum interior space", "Flexible seating arrangements", "Family-friendly features", "Reliable"],
+    "cons": ["Minivan stigma", "Lower fuel economy than sedans", "Bulky to park", "Not stylish"]
+  },
+  {
+    "id": 8,
+    "name": "Tesla Model Y",
+    "type": "crossover",
+    "description": "Electric crossover SUV with dual motor AWD, quick acceleration and family-friendly interior",
+    "features": ["electric", "crossover", "family", "awd", "fast", "tech"],
+    "specs": {
+      "range": "330 miles",
+      "acceleration": "0-60 mph in 3.5s",
+      "topSpeed": "155 mph",
+      "seating": "5-7"
+    },
+    "price": 47990,
+    "image": "https://w7.pngwing.com/pngs/705/817/png-transparent-white-tesla-model-y-transport-cars-tesla.png",
+    "inStore": true,
+    "pros": ["Great electric range", "Fast acceleration", "Supercharger network", "Cutting-edge tech"],
+    "cons": ["Build quality concerns", "Limited service centers", "Premium price for segment"]
+  },
+  {
+    "id": 9,
+    "name": "Mazda MX-5 Miata",
+    "type": "convertible",
+    "description": "Lightweight, fun-to-drive convertible sports car with excellent handling",
+    "features": ["convertible", "sports car", "lightweight", "fun", "handling", "affordable"],
+    "specs": {
+      "mpg": "26 city / 34 highway",
+      "acceleration": "0-60 mph in 5.7s",
+      "topSpeed": "135 mph",
+      "seating": 2
+    },
+    "price": 27650,
+    "image": "https://file.kelleybluebookimages.com/kbb/base/evox/CP/8455/2013-MAZDA-MX-5%20Miata-front_8455_032_1793x749_34K_cropped.png",
+    "inStore": false,
+    "pros": ["Pure driving experience", "Affordable sports car", "Great handling", "Convertible top"],
+    "cons": ["Limited cargo space", "Only seats two", "Not practical for daily use", "Limited technology"]
+  },
+  {
+    "id": 10,
+    "name": "Mercedes-Benz S-Class",
+    "type": "luxury sedan",
+    "description": "Full-size luxury sedan with cutting-edge technology, supreme comfort and powerful engines",
+    "features": ["luxury", "comfortable", "tech", "powerful", "premium", "spacious"],
+    "specs": {
+      "acceleration": "0-60 mph in 4.9s",
+      "topSpeed": "130 mph",
+      "horsepower": "429-603 hp",
+      "seating": 5
+    },
+    "price": 111100,
+    "image": "https://icon2.cleanpng.com/20180526/zae/avqz1tofp.webp",
+    "inStore": true,
+    "pros": ["Ultimate luxury experience", "Cutting-edge technology", "Exceptional build quality", "Status symbol"],
+    "cons": ["Very high price tag", "Expensive maintenance", "Complex technology to learn", "Poor fuel economy"]
+  },
+  {
+    "id": 11,
+    "name": "Toyota Prius Prime",
+    "type": "hybrid",
+    "description": "Plug-in hybrid with excellent fuel economy, eco-friendly features and practical design",
+    "features": ["hybrid", "eco-friendly", "fuel efficient", "practical", "affordable", "tech"],
+    "specs": {
+      "mpg": "54 city / 133 MPGe",
+      "electric range": "25 miles",
+      "acceleration": "0-60 mph in 10.2s",
+      "seating": 5
+    },
+    "price": 28545,
+    "image": "https://p7.hiclipart.com/preview/225/867/771/2018-toyota-prius-prime-plus-hatchback-car-2017-toyota-prius-prime-advanced-plug-in-hybrid-angular.jpg",
+    "inStore": true,
+    "pros": ["Exceptional fuel economy", "Low environmental impact", "Reliable Toyota build", "Low running costs"],
+    "cons": ["Slow acceleration", "Polarizing styling", "Limited electric-only range", "Not exciting to drive"]
+  },
+  {
+    "id": 12,
+    "name": "Audi Q5",
+    "type": "luxury suv",
+    "description": "Compact luxury SUV with refined interior, smooth ride and advanced technology",
+    "features": ["luxury", "suv", "awd", "refined", "tech", "comfortable"],
+    "specs": {
+      "mpg": "23 city / 28 highway",
+      "acceleration": "0-60 mph in 5.7s",
+      "horsepower": "261 hp",
+      "seating": 5
+    },
+    "price": 43500,
+    "image": "https://p7.hiclipart.com/preview/775/812/873/2018-audi-sq5-3-0t-premium-plus-suv-2018-audi-q5-car-audi-quattro-audi.jpg",
+    "inStore": true,
+    "pros": ["Premium interior quality", "Refined driving experience", "Excellent technology", "Good balance of comfort and sportiness"],
+    "cons": ["Higher price than non-luxury SUVs", "Expensive options", "Average cargo space", "Somewhat conservative styling"]
+  },
+  {
+    "id": 13,
+    "name": "Rivian R1S",
+    "type": "electric suv",
+    "description": "Adventure-oriented electric SUV with impressive range, performance and off-road capability",
+    "features": ["electric", "suv", "off-road", "luxury", "powerful", "innovative"],
+    "specs": {
+      "range": "316 miles",
+      "acceleration": "0-60 mph in 3.0s",
+      "wading depth": "3+ feet",
+      "seating": 7
+    },
+    "price": 78000,
+    "image": "https://platform.cstatic-images.com/xxlarge/in/v2/stock_photos/c2cadc28-6849-4c3a-84c8-b216094f4859/1e2b452a-3490-411b-9911-877cf2ba57cd.png",
+    "inStore": false,
+    "pros": ["Impressive electric performance", "True off-road capability", "Innovative features", "Spacious interior"],
+    "cons": ["New manufacturer with limited track record", "Limited service network", "High price", "Heavy vehicle"]
+  },
+  {
+    "id": 14,
+    "name": "Kia Telluride",
+    "type": "midsize suv",
+    "description": "Award-winning midsize SUV with spacious interior, premium features at value price",
+    "features": ["family", "suv", "value", "spacious", "practical", "comfortable"],
+    "specs": {
+      "mpg": "20 city / 26 highway",
+      "acceleration": "0-60 mph in 7.2s",
+      "horsepower": "291 hp",
+      "seating": "7-8"
+    },
+    "price": 33390,
+    "image": "https://www.pngplay.com/wp-content/uploads/13/Kia-Telluride-Transparent-Background.png",
+    "inStore": true,
+    "pros": ["Upscale feel at mainstream price", "Generous standard features", "Spacious third row", "Strong warranty"],
+    "cons": ["Average fuel economy", "Limited powertrain options", "Can get expensive with options", "High demand means less discounting"]
+  },
+  {
+    "id": 15,
+    "name": "BMW i4",
+    "type": "electric sedan",
+    "description": "Performance-oriented electric sedan with traditional BMW driving dynamics and luxury",
+    "features": ["electric", "luxury", "sedan", "sporty", "tech", "premium"],
+    "specs": {
+      "range": "301 miles",
+      "acceleration": "0-60 mph in 5.5s",
+      "horsepower": "335-536 hp",
+      "seating": 5
+    },
+    "price": 52995,
+    "image": "https://media.adtorqueedge.com/new-cars/bmw-aus/i4-gran-coupe/variant/i4-m50.png",
+    "inStore": false,
+    "pros": ["BMW driving dynamics in EV form", "Premium interior", "Better range than many competitors", "Traditional sedan styling"],
+    "cons": ["Less interior space than Tesla", "Charging network not as extensive as Tesla", "High price compared to non-luxury EVs"]
+  }
+]
