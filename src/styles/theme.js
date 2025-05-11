@@ -3,15 +3,15 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#424242',
-      light: '#6d6d6d',
-      dark: '#1b1b1b',
+      main: '#3f51b5', // A more vibrant blue color
+      light: '#757de8',
+      dark: '#002984',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#757575',
-      light: '#a4a4a4',
-      dark: '#494949',
+      main: '#f50057', // A contrasting pink color
+      light: '#ff4081',
+      dark: '#c51162',
       contrastText: '#ffffff',
     },
     background: {
@@ -80,7 +80,7 @@ const theme = createTheme({
           },
         },
         containedPrimary: {
-          background: 'linear-gradient(45deg, #424242 30%, #616161 90%)',
+          background: 'linear-gradient(45deg, #3f51b5 30%, #536dfe 90%)',
         },
       },
     },

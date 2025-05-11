@@ -29,29 +29,30 @@ Categories in our database:
 - Features: electric, hybrid, fast, luxury, premium, budget, affordable
 - Use cases: family, business, road trip, city, off-road
 - Needs: spacious, comfortable, safe, reliable
+- Price range: cheap/affordable (under $30k), mid-range ($30k-$60k), expensive/luxury (over $60k)
+
+Process these user preferences:
+1. If a preference contradicts an earlier one (e.g., "cheap" then "expensive"), use the latest preference
+2. Return ONLY simple string keywords, no objects or structured data
 
 User query: "${userInput}"
 
-Respond ONLY with a JSON array of 2-4 most relevant keywords. Example: ["luxury", "sedan"]
+Respond ONLY with a simple comma-separated list of 2-4 most relevant keywords. Example: "luxury,sedan,comfortable"
 `;
 
     const response = await processWithLlama(prompt);
     
-    // Try to parse the JSON array from the response
-    try {
-      const match = response.match(/\[.*\]/s);
-      if (match) {
-        const extractedArray = JSON.parse(match[0]);
-        return extractedArray;
-      }
-      return [];
-    } catch (parseError) {
-      console.error("Error parsing keywords from LLaMA:", parseError);
-      return [];
-    }
+    // Parse the response to get simple keywords
+    const cleanedResponse = response.trim().replace(/[\[\]"]/g, '');
+    const keywords = cleanedResponse
+      .split(',')
+      .map(k => k.trim().toLowerCase())
+      .filter(k => k.length > 0);
+    
+    return keywords;
   } catch (error) {
     console.error("Error extracting keywords with LLaMA:", error);
-    throw error;
+    return [];
   }
 };
 
@@ -70,13 +71,15 @@ You are a car advisor AI that gives EXTREMELY CONCISE responses (1-3 lines maxim
 
 User query: "${userInput}"
 
-Identified preferences: ${currentKeywords.join(", ")}
+Current preferences: ${currentKeywords.join(", ")}
 
 Top matching cars:
 ${JSON.stringify(carsData, null, 1)}
 
 Give a brief, helpful response mentioning the best match if clear. Ask ONE specific question to refine results.
 DO NOT list all cars. 1-3 lines total response.
+NEVER return JSON objects, structured data, or labeled categories in your response.
+ALWAYS return plain text only.
 `;
 
     const response = await processWithLlama(prompt);
@@ -105,6 +108,49 @@ Reply in 2-3 lines only, suggesting the alternative and one key advantage.
   } catch (error) {
     console.error("Error generating comparison with LLaMA:", error);
     throw error;
+  }
+};
+
+// Add this new function to your existing aiService.js
+export const generateConversationResponse = async (userInput, keywords, conversationHistory, conciseMode = false) => {
+  try {
+    // Get top cars based on current keywords to inform the AI
+    const carService = require('./carService');
+    const topCars = carService.findMatchingCars(keywords).slice(0, 3);
+    
+    // Create a summary of top matching cars for the AI to reference
+    const carSummary = topCars.length > 0 ? 
+      topCars.map(car => `${car.name} (${car.type}, $${car.price.toLocaleString()}, features: ${car.features.slice(0, 3).join(", ")})`).join("\n") : 
+      "No specific cars match yet.";
+    
+    // Create the prompt for the LLaMA model
+    const prompt = `
+You are a helpful car shopping assistant having a conversation with a customer about what car they might want to buy.
+You NEVER reveal what specific keywords you've extracted from the customer's message.
+
+Current customer preferences identified: ${keywords.join(", ")}
+
+Top matching cars:
+${carSummary}
+
+Your task is to:
+1. Have a natural, helpful conversation to understand the customer's car needs
+2. If they haven't mentioned budget, ask about it
+3. If they haven't mentioned car type (sedan, SUV, etc.), ask about it
+4. If they haven't mentioned use case (commuting, family, etc.), ask about it
+5. If they ask for recommendations, mention AT MOST ONE specific car that matches their needs
+
+${conciseMode ? 'Keep your responses very concise (1-2 sentences maximum).' : ''}
+Always respond in a conversational, helpful tone. Don't list features or specifications unless specifically asked.
+
+User input: "${userInput}"
+Your response:`;
+    
+    const response = await processWithLlama(prompt);
+    return response.trim();
+  } catch (error) {
+    console.error("Error generating conversation response with LLaMA:", error);
+    return "I'm sorry, I'm having trouble understanding. Could you tell me more about what kind of car you're looking for?";
   }
 };
 

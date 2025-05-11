@@ -12,42 +12,82 @@ export const getAvailableCars = () => {
 
 // Find cars that match given keywords
 export const findMatchingCars = (keywords) => {
-  if (!keywords || keywords.length === 0) {
+  // First, ensure keywords is an array of strings
+  if (!Array.isArray(keywords)) {
+    console.error("Keywords must be an array:", keywords);
     return [];
   }
   
-  return carsData
-    .filter(car => {
-      // Check if any of the car's features or type matches any of the keywords
-      const carKeywords = [
-        ...car.features, 
-        car.type,
-        ...(car.description.toLowerCase().split(' '))
-      ];
+  // Import your car data
+  const cars = require('../assets/data/cars.json');
+  
+  // Filter cars based on the keywords
+  return cars.filter(car => {
+    // Check if any keyword is included in car properties
+    return keywords.some(keyword => {
+      // Ensure keyword is a string
+      if (typeof keyword !== 'string') {
+        console.warn(`Invalid keyword type: ${typeof keyword}`, keyword);
+        return false;
+      }
       
-      return keywords.some(keyword => 
-        carKeywords.some(carKeyword => 
-          carKeyword.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-    })
-    .sort((a, b) => {
-      // Count how many keywords match each car
-      const aMatches = keywords.filter(keyword => 
-        [...a.features, a.type].some(feature => 
-          feature.toLowerCase().includes(keyword.toLowerCase())
-        )
-      ).length;
+      const keywordLower = keyword.toLowerCase();
       
-      const bMatches = keywords.filter(keyword => 
-        [...b.features, b.type].some(feature => 
-          feature.toLowerCase().includes(keyword.toLowerCase())
-        )
-      ).length;
+      // Check if the keyword matches car type
+      if (car.type && car.type.toLowerCase().includes(keywordLower)) {
+        return true;
+      }
       
-      // Sort by number of matches, descending
-      return bMatches - aMatches;
+      // Check if any of the car features include the keyword
+      if (car.features && Array.isArray(car.features) && 
+          car.features.some(feature => 
+            typeof feature === 'string' && feature.toLowerCase().includes(keywordLower)
+          )) {
+        return true;
+      }
+      
+      // Check if price range keywords match
+      if ((keywordLower === 'cheap' || keywordLower === 'affordable' || keywordLower === 'budget') && 
+          car.price < 30000) {
+        return true;
+      }
+      
+      if ((keywordLower === 'expensive' || keywordLower === 'luxury' || keywordLower === 'premium') && 
+          car.price > 60000) {
+        return true;
+      }
+      
+      if (keywordLower === 'mid-range' && car.price >= 30000 && car.price <= 60000) {
+        return true;
+      }
+      
+      // Check name and description
+      if ((car.name && car.name.toLowerCase().includes(keywordLower)) || 
+          (car.description && car.description.toLowerCase().includes(keywordLower))) {
+        return true;
+      }
+      
+      return false;
     });
+  }).sort((a, b) => {
+    // Calculate relevance score for car A
+    const scoreA = keywords.filter(keyword => {
+      if (typeof keyword !== 'string') return false;
+      const kw = keyword.toLowerCase();
+      return a.features.some(f => f.toLowerCase().includes(kw)) || 
+             a.type.toLowerCase().includes(kw);
+    }).length;
+    
+    // Calculate relevance score for car B
+    const scoreB = keywords.filter(keyword => {
+      if (typeof keyword !== 'string') return false;
+      const kw = keyword.toLowerCase();
+      return b.features.some(f => f.toLowerCase().includes(kw)) || 
+             b.type.toLowerCase().includes(kw);
+    }).length;
+    
+    return scoreB - scoreA; // Sort by highest relevance
+  });
 };
 
 // Get similar cars that are in store
@@ -93,7 +133,7 @@ However, I'd like to suggest the ${availableCar.name} which is similar and avail
 
 Let me compare them for you:
 
-Both vehicles are ${requestedCar.type === availableCar.type ? `in the same ${requestedCar.type} category` : `similar, though the ${requestedCar.name} is a ${requestedCar.type} while the ${availableCar.name} is a ${availableCar.type}`}.
+Both vehicles are ${requestedCar.type === availableCar.type ? `in the same ${requestedCar.type} category` : `similar, though the ${requestedCar.name} is a ${requestedCar.type} while the ${availableCar.name} is a ${availableCar.type}`}. 
 
 The ${availableCar.name} offers these advantages:
 ${availableCar.pros.slice(0, 3).map(pro => `• ${pro}`).join('\n')}
